@@ -6,7 +6,6 @@ import { Pencil, Plus, X, Check, RotateCcw } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import styles from "./island.module.css";
 
 interface Island {
   id: number;
@@ -60,7 +59,7 @@ export default function IslandTodo() {
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (isExpanded && !(event.target as Element).closest(`.${styles["island-todo"]}`)) {
+      if (isExpanded && !(event.target as Element).closest(`.island-todo`)) {
         setIsExpanded(false);
       }
     };
@@ -79,7 +78,7 @@ export default function IslandTodo() {
 
   return (
     <motion.div
-      className={`${styles["island-todo"]} fixed top-1/2 left-1/2 z-50 -translate-x-1/2 -translate-y-1/2 transform`}
+      className={`island-todo fixed top-1/2 left-1/2 z-50 -translate-x-1/2 -translate-y-1/2 transform`} // Removed styles["island-todo"]
       initial={false}
       animate={{
         width: isExpanded ? "var(--island-expanded-width)" : "var(--island-collapsed-width)",
@@ -148,7 +147,7 @@ export default function IslandTodo() {
                 </Button>
               </div>
               <motion.ul
-                className={`max-h-60 space-y-2 overflow-y-auto ${styles["island-todo"]} ul`}
+                className={`ul max-h-60 space-y-2 overflow-y-auto`} // Removed styles["island-todo"]
                 role="list"
                 aria-label="Todo list"
                 layout
@@ -180,7 +179,7 @@ export default function IslandTodo() {
                           onClick={() => toggleTodo(todo.id)}
                           size="sm"
                           variant="ghost"
-                          className={`${styles["island-todo"]} button h-10 rounded-none px-3 text-gray-400 hover:bg-[#222222] hover:text-gray-200`}
+                          className={`button h-10 rounded-none px-3 text-gray-400 hover:bg-[#222222] hover:text-gray-200`} // Removed styles["island-todo"]
                           aria-label={`${todo.completed ? "Revert" : "Complete"} "${todo.text}"`}
                         >
                           {todo.completed ? <RotateCcw size={14} /> : <Check size={14} />}
@@ -190,7 +189,7 @@ export default function IslandTodo() {
                           onClick={() => removeTodo(todo.id)}
                           size="sm"
                           variant="ghost"
-                          className={`${styles["island-todo"]} button h-10 rounded-none px-3 text-gray-400 hover:bg-[#222222] hover:text-gray-200`}
+                          className={`button h-10 rounded-none px-3 text-gray-400 hover:bg-[#222222] hover:text-gray-200`} // Removed styles["island-todo"]
                           aria-label={`Remove "${todo.text}" from the list`}
                         >
                           <X size={14} />
